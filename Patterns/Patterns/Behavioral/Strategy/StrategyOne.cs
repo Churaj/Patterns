@@ -2,7 +2,7 @@
 
 namespace Patterns.Behavioral.Strategy
 {
-    public sealed class StrategyOne : IStrategy
+    public class StrategyOne : IStrategy
     {
         public void DoSomeImportantJob(string parameter)
         {
