@@ -6,6 +6,7 @@ using Patterns.Creational.Prototype;
 using Patterns.Creational.Singleton;
 using Patterns.Structural.Facade;
 using System;
+using Patterns.Behavioral.Command;
 using Patterns.Behavioral.Strategy;
 using Patterns.Behavioral.TemplateMethod;
 using Patterns.Structural.Decorator;
@@ -168,6 +169,27 @@ namespace Patterns
                 Console.WriteLine(userRepository.GetUserName());
 
                 Console.WriteLine("----    Testing Decorator pattern finished    ----");
+                Console.ReadKey();
+            }
+
+            // Command.
+            {
+                Console.WriteLine("----    Testing Command pattern    ----");
+
+                // Emulate the dependency injection container behavior.
+                IUserService userService = new UserService();
+                IEmailService emailService = new EmailService();
+                ICommandHandler<CreateUserCommand> createUserCommandHandler = new CreateUserCommandHandler(userService, emailService);
+
+                // Emulate the client code.
+                createUserCommandHandler.Handle(new CreateUserCommand
+                {
+                    Name = "John",
+                    Surname = "Smith",
+                    Email = "email@email.com"
+                });
+
+                Console.WriteLine("----    Testing Command pattern finished    ----");
                 Console.ReadKey();
             }
         }
