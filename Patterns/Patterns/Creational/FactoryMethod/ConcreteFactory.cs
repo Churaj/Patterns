@@ -12,6 +12,7 @@ namespace Patterns.Creational.FactoryMethod
                     return new ProductOfType1();
                 case ProductType.Type2:
                     return new ProductOfType2();
+                case ProductType.None:
                 default:
                     throw new ArgumentException("Not supported product type.");
             }

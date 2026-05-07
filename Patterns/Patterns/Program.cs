@@ -8,6 +8,7 @@ using Patterns.Structural.Facade;
 using System;
 using Patterns.Behavioral.Strategy;
 using Patterns.Behavioral.TemplateMethod;
+using Patterns.Structural.Decorator;
 
 namespace Patterns
 {
@@ -27,7 +28,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Mediator
+            // Mediator.
             {
                 Console.WriteLine("----    Testing Mediator pattern    ----");
 
@@ -46,7 +47,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Singleton
+            // Singleton.
             {
                 Console.WriteLine("----    Testing Singleton pattern    ----");
 
@@ -63,7 +64,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Builder
+            // Builder.
             {
                 Console.WriteLine("----    Testing Builder pattern    ----");
 
@@ -87,11 +88,11 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Factory Method
+            // Factory Method.
             {
                 Console.WriteLine("----    Testing Factory Method pattern    ----");
 
-                Console.WriteLine(ConcreteFactory.CreateProduct(ProductType.Type2));
+                Console.WriteLine(ConcreteFactory.CreateProduct(ProductType.Type2).Name);
 
                 Console.WriteLine("----    Testing Factory Method pattern finished    ----");
                 Console.ReadKey();
@@ -99,7 +100,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Abstract Factory
+            // Abstract Factory.
             {
                 Console.WriteLine("----    Testing Abstract Factory pattern    ----");
 
@@ -113,7 +114,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Prototype
+            // Prototype.
             {
                 Console.WriteLine("----    Testing Prototype pattern    ----");
 
@@ -127,7 +128,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Strategy
+            // Strategy.
             {
                 Console.WriteLine("----    Testing Strategy pattern    ----");
 
@@ -143,7 +144,7 @@ namespace Patterns
 
             Console.WriteLine("--------------------------------------------------");
 
-            // Template Method
+            // Template Method.
             {
                 Console.WriteLine("----    Testing Template Method pattern    ----");
 
@@ -151,6 +152,22 @@ namespace Patterns
                 templateMethodImplementationClassObject.DoSomeTemplateMethodJob();
 
                 Console.WriteLine("----    Testing Template Method pattern finished    ----");
+                Console.ReadKey();
+            }
+
+            // Decorator.
+            {
+                Console.WriteLine("----    Testing Decorator pattern    ----");
+
+                // Emulate the dependency injection container behavior.
+                IUserRepository innerUserRepository = new UserRepository();
+                IMemoryCache memoryCache = new MemoryCache();
+                IUserRepository userRepository = new CachedUserRepository(innerUserRepository, memoryCache);
+
+                // Emulate the client code.
+                Console.WriteLine(userRepository.GetUserName());
+
+                Console.WriteLine("----    Testing Decorator pattern finished    ----");
                 Console.ReadKey();
             }
         }
