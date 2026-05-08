@@ -9,6 +9,7 @@ using System;
 using Patterns.Behavioral.Command;
 using Patterns.Behavioral.Strategy;
 using Patterns.Behavioral.TemplateMethod;
+using Patterns.Structural.Adapter;
 using Patterns.Structural.Decorator;
 
 namespace Patterns
@@ -199,6 +200,22 @@ namespace Patterns
                 });
 
                 Console.WriteLine("----    Testing Command pattern finished    ----");
+                Console.ReadKey();
+            }
+
+            // Adapter.
+            {
+                Console.WriteLine("----    Testing Adapter pattern    ----");
+
+                // Emulate the dependency injection container behavior.
+                IMegaSmsCorpClient megaSmsCorpClient = new MegaSmsCorpClient();
+                ISmsClient smsClient = new MegaSmsClientAdapter(megaSmsCorpClient);
+                ISmsControllerEmulator smsControllerEmulator = new SmsControllerEmulator(smsClient);
+
+                // Emulate the client code.
+                smsControllerEmulator.DoSomethingWithSms();
+
+                Console.WriteLine("----    Testing Adapter pattern finished    ----");
                 Console.ReadKey();
             }
         }
