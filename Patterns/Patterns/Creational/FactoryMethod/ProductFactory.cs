@@ -2,9 +2,9 @@
 
 namespace Patterns.Creational.FactoryMethod
 {
-    public static class ConcreteFactory
+    public class ProductFactory : IProductFactory
     {
-        public static IGeneralProduct CreateProduct(ProductType productType)
+        public IProduct CreateProduct(ProductType productType)
         {
             switch (productType)
             {

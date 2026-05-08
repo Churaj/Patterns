@@ -1,6 +1,6 @@
 ﻿namespace Patterns.Creational.FactoryMethod
 {
-    public interface IGeneralProduct
+    public interface IProduct
     {
         string Name { get; set; }
     }

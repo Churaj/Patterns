@@ -93,7 +93,12 @@ namespace Patterns
             {
                 Console.WriteLine("----    Testing Factory Method pattern    ----");
 
-                Console.WriteLine(ConcreteFactory.CreateProduct(ProductType.Type2).Name);
+                IProductFactory productFactory = new ProductFactory();
+                IProductService productService = new ProductService(productFactory);
+                var product1 = productService.DoSomethingWithProduct(ProductType.Type1);
+                var product2 = productService.DoSomethingWithProduct(ProductType.Type2);
+                Console.WriteLine(product1.ToString());
+                Console.WriteLine(product2.ToString());
 
                 Console.WriteLine("----    Testing Factory Method pattern finished    ----");
                 Console.ReadKey();
