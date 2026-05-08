@@ -110,9 +110,13 @@ namespace Patterns
             {
                 Console.WriteLine("----    Testing Abstract Factory pattern    ----");
 
-                AbstractToysFactory factory = new TeddyToyFactory();
-                var createdToy = factory.CreateToy();
-                Console.WriteLine(createdToy.ToString());
+                // Emulate the dependency injection container behavior.
+                IGuiFactory winFactory = new WinFactory();
+                IRenderingService renderingService = new RenderingService(winFactory);
+                renderingService.Render();
+                IGuiFactory macFactory = new MacFactory();
+                renderingService = new RenderingService(macFactory);
+                renderingService.Render();
 
                 Console.WriteLine("----    Testing Abstract Factory pattern finished    ----");
                 Console.ReadKey();
